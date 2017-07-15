@@ -61,20 +61,39 @@
         </dependency>
         <!-- ... Spring boot end ... -->
 
-        <!-- ... reactor start ... -->
-        <dependency>
-            <groupId>io.projectreactor.ipc</groupId>
-            <artifactId>reactor-netty</artifactId>
-            <version>0.6.4.RELEASE</version>
-        </dependency>
-        <!-- ... reactor end ... -->
-
         <!-- ... lombok start ... -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
         <!-- ... lombok end ... -->
+
+        <!-- ... guava start ... -->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>22.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
+            <version>4.1.0</version>
+        </dependency>
+        <!-- ... guava end ... -->
+
+        <!-- ... dataSource start ... -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.38</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.25</version>
+        </dependency>
+        <!-- ... dataSource end ... -->
     </dependencies>
 
     <repositories>

@@ -11,7 +11,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class BaseQueryParam {
 
-    protected Date startDate;
-    protected Date endDate;
+    protected Date startTime;
+    protected Date endTime;
 
 }

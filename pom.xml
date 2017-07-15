@@ -11,6 +11,7 @@
     <modules>
         <module>urwoo-article</module>
         <module>urwoo-basic</module>
+        <module>urwoo-user</module>
     </modules>
 
     <groupId>com.urwoo</groupId>
@@ -44,6 +45,7 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombock.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

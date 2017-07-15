@@ -10,5 +10,5 @@ import lombok.Getter;
 @AllArgsConstructor
 public class ArticleCategoryDeletedEvent {
 
-    private final Integer articleCategoryId;
+    private final Long articleCategoryId;
 }
