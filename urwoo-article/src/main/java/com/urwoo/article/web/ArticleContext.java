@@ -9,4 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ArticleContext {
 
 
+    public ResponseEntity save(){
+        return null;
+    }
+
 }

@@ -12,6 +12,7 @@
         <module>urwoo-article</module>
         <module>urwoo-basic</module>
         <module>urwoo-user</module>
+        <module>urwoo-gateway</module>
     </modules>
 
     <groupId>com.urwoo</groupId>
