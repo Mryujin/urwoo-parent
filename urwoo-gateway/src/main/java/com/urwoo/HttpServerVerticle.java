@@ -4,13 +4,21 @@ import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
+import io.vertx.core.buffer.Buffer;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServer;
+import io.vertx.ext.web.FileUpload;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.Iterator;
+import java.util.Set;
 import java.util.function.Consumer;
 
 public class HttpServerVerticle extends AbstractVerticle {
@@ -37,7 +45,11 @@ public class HttpServerVerticle extends AbstractVerticle {
         HttpServer server = vertx.createHttpServer();
 
         Router router = Router.router(vertx);
+
         router.get("/").handler(this::indexHandler);
+        router.route(HttpMethod.POST,"/upload")
+                .handler(BodyHandler.create())  //BodyHandler处理文件上传
+                .handler(this::upload);
 /*        router.get("/wiki/:page").handler(this::pageRenderingHandler);
         router.post().handler(BodyHandler.create());
         router.post("/save").handler(this::pageUpdateHandler);
@@ -62,5 +74,20 @@ public class HttpServerVerticle extends AbstractVerticle {
         String id = context.request().getParam("id");
         System.err.println("请求参数："+id);
         context.response().end("大家好"+id);
+    }
+
+    private void upload(RoutingContext context){
+        System.out.printf("--->"+context.getAcceptableContentType());
+        Set<FileUpload> uploads = context.fileUploads();
+        Iterator<FileUpload> fileUploads = uploads.iterator();
+        while(fileUploads.hasNext()){
+            FileUpload fileUpload = fileUploads.next();
+            Buffer uploadedFile = vertx.fileSystem().readFileBlocking(fileUpload.uploadedFileName());
+            try {
+                String fileName = URLDecoder.decode(fileUpload.fileName(), "UTF-8");
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
